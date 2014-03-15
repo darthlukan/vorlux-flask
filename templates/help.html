@@ -1,4 +1,9 @@
-<title>Help</title>
+{% extends "base_layout.html" %}
+{% block head %}
+        {{ super() }}
+        {% block title %}Help{% endblock %}
+{% endblock %}
+{% block content %}
 <center><h1>Help</h1></center>
 <p><h3>How to connect to your new server</h3></p>
 <h4>On GNU/Linux</h4>
@@ -55,12 +60,5 @@ authorized_keys file</strong> into your <code>~/.ssh/authorized_keys</code> file
 <pre><font color="#006699">#!/bin/bash</font>
 nohup java -jar -Xmx1024M -Xms1024M minecraft_server*.jar nogui <font color="#00FF00">></font> minecraft.log <font color="#00FF00">&</font></pre>
 <p>If you use less RAM, just replace <code>-Xmx1024M</code> and <code>-Xms1024M</code> with a lower value.</p>
-{% extends "base_layout.html" %}
-{% block head %}
-        {{ super() }}
-        {% block title %}Help{% endblock %}
-{% endblock %}
-{% block content %}
-    <p>This is a help page</p>
 {% endblock %}
 
