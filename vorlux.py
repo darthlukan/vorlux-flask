@@ -32,6 +32,7 @@ def get_db():
         g.sqlite_db = connect_db()
     return g.sqlite_db
 
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 
@@ -74,6 +75,7 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
 @app.teardown_appcontext
 def close_db(error):
     """Closes the database again at the end of the request."""
@@ -87,6 +89,7 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+
 
 def get_user_id(db, username):
     rv = db.execute('''SELECT userid FROM user WHERE username = ?''', [username], one=True)
@@ -115,19 +118,19 @@ def register():  # registering new user
         error = 'Chosen username is already taken'
     else:
         db.execute(
-            '''insert into user (username, email, pw_hash) values (?, ?, ?)''',
+            '''INSERT INTO user (username, email, pw_hash) VALUES (?, ?, ?)''',
             [request.form['username'], request.form['email'],
-            generate_password_hash(request.form['password'])]
+             generate_password_hash(request.form['password'])]
         )
         db.commit()
         flash('Thank you for registering! You may now login')
         return redirect(url_for('login'))
     return render_template('register.html', error=error)
 
+
 @app.route('/')
 def home():
     return render_template('home.html')
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -151,33 +154,41 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+
 @app.route('/about')
 def about_us():
-	return render_template('aboutus.html')
+    return render_template('aboutus.html')
+
 
 @app.route('/help')
 def help_page():
     return render_template("help.html")
 
+
 @app.route('/employees')
 def employees():
-	return render_template('employees.html')
+    return render_template('employees.html')
+
 
 @app.route('/plans')
 def plans():
-	return render_template('plans.html')
+    return render_template('plans.html')
+
 
 @app.route('/support')
 def support():
-	return render_template('support.html')
+    return render_template('support.html')
+
 
 @app.route('/donate')
 def donate():
-	return render_template('donate.html')
+    return render_template('donate.html')
+
 
 @app.route('/contact')
 def contact_us():
-	return render_template('contactus.html')
+    return render_template('contactus.html')
+
 
 if __name__ == '__main__':
     init_db()
