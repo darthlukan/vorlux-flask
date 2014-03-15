@@ -162,9 +162,12 @@ def donate():
     return render_template('donate.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact_us():
-    return render_template('contactus.html')
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('contactus.html')
 
 
 if __name__ == '__main__':
