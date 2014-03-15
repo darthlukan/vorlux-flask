@@ -64,22 +64,20 @@
 
     </div>
     {% endblock %}
-</div>
-<!-- /.container -->
+    {% block footer %}
+    <div id="footer">
+        <p><a href="http://mail.vorluxhosting.com" target="_blank" title="Vorlux Mail">Vorlux Hosting Mail Login</a> |
+            Copyright Vorlux 2014 | <a href="index.php?page=employees" title="Employees">About Our Staff</a></p>
+    </div>
 
-
-{% block footer %}
-<div id="footer">
-    <p><a href="http://mail.vorluxhosting.com" target="_blank" title="Vorlux Mail">Vorlux Hosting Mail Login</a> |
-        Copyright Vorlux 2014 | <a href="index.php?page=employees" title="Employees">About Our Staff</a></p>
-</div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/static/bootstrap.min.js"></script>
-{% endblock %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    {% endblock %}
+    </div>
+    <!-- /.container -->
 </body>
 </html>
 
