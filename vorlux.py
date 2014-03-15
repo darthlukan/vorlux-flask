@@ -200,6 +200,7 @@ def contact_us():
             'user_message': form['message']
         }
         if send_email(email_data):
+			flash('Message sent! We will get back to you ASAP!')
             return redirect("/")
         else:
             return render_template('contactus.html', error="Failed to send email via contact form!")
