@@ -52,7 +52,7 @@ def show_entries():
     db = get_db()
     cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
     entries = cur.fetchall()
-    return render_template('layout.html', entries=entries)
+    return render_template('base_layout.html', entries=entries)
 
 
 @app.route('/add', methods=['POST'])
@@ -87,6 +87,11 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+
+@app.route('/help')
+def help_page():
+    return render_template("help.html")
 
 
 if __name__ == '__main__':
