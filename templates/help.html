@@ -13,9 +13,9 @@
 <p>If you're using a Windows box, there are tools out there to connect to your GNU/Linux server. Our recommendation is <a href="http://http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" title="PuTTY Download">PuTTY</a>. There are other tools out there, but this is how you would connect to your new GNU/Linux server using PuTTY.</p>
 <p>After downloading PuTTY, open it and in the the <strong>Host Name (or IP address)</strong> box you type in your user and host and port number (<em>For full size, click on the 
 picture</em>):
-<p><center><a href="/images/putty-1.png" target="_blank" title="PuTTY Host Name"><img src="/images/putty-1.png" alt="PuTTY Host Name" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/putty-1.png" target="_blank" title="PuTTY Host Name"><img src="/static/images/putty-1.png" alt="PuTTY Host Name" height="320" width="240" /></a></center></p>
 <p>After that, it will prompt for password and you will have access to your server.</p>
-<p><center><a href="/images/geonosis.png" target="_blank" title="Logged in"><img src="/images/geonosis.png" alt="Logged in" height="240" width="320" /></a></center></p>
+<p><center><a href="/static/images/geonosis.png" target="_blank" title="Logged in"><img src="/static/images/geonosis.png" alt="Logged in" height="240" width="320" /></a></center></p>
 <h3>How to generate SSH RSA key for your server</h3>
 <h4>On GNU/Linux</h4>
 <p>This helps for security reasons to have an RSA keypair for your server and computer you use to connect to your server. It's really simple to do:</p>
@@ -40,16 +40,16 @@ Password:
 <strong><font color="#FF0000">root@your-ip</font><font color="#0000FF"> ~ #</font></strong></pre>
 <h4>On Windows</h4>
 <p>To do this on Windows is pretty simple. First you need to open <strong>PuTTYGen</strong>, search for it in your start menu.</p>
-<p><center><a href="/images/puttygen.png" title="PuTTYGen" target="_blank"><img src="/images/puttygen.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/puttygen.png" title="PuTTYGen" target="_blank"><img src="/static/images/puttygen.png" height="320" width="240" /></a></center></p>
 <p>After you have opened PuTTYGen, you will click on <strong>Generate</strong></p>
-<p><center><a href="/images/puttygen-generate.png" title="Generate" target="_blank"><img src="/images/puttygen-generate.png" height="320" width="240" /></a></center></p>
-<p><center><a href="/images/key-final.png" title="Key" target="_blank"><img src="/images/key-final.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/puttygen-generate.png" title="Generate" target="_blank"><img src="/static/images/puttygen-generate.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/key-final.png" title="Key" target="_blank"><img src="/static/images/key-final.png" height="320" width="240" /></a></center></p>
 <p>Move your mouse in random patterns to generate the key, and click <strong>Save Public Key</strong> as well as <strong>Save Private Key</strong>. I always save mine as 
 <code>id_rsa.pub</code> for public and <code>id_rsa.ppk</code> for private. After you've done this, you can SSH into your box and copy the <strong>Public key for pasting into OpenSSH 
 authorized_keys file</strong> into your <code>~/.ssh/authorized_keys</code> file.</p>
 <p>After it is uploaded, you can direct PUTTY to use your new key. </p>
-<p><center><a href="/images/putty-load.png" title="Load key"><img src="/images/putty-load.png" height="320" width="240" /></a></center></p>
-<p><center><a href="/images/id_rsa.png" title="Choose key"><img src="/images/id_rsa.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/putty-load.png" title="Load key"><img src="/static/images/putty-load.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/static/images/id_rsa.png" title="Choose key"><img src="/static/images/id_rsa.png" height="320" width="240" /></a></center></p>
 <p>You can save the connection in PuTTY, otherwise you will need to tell it to use this key each time you run it.</p>
 <p><em>It is recommended that you disable <strong>root login</strong>, and add a user and login with your user. You do not have to do this, but it is recommended.</em></p>
 <h3>Setting up a Minecraft Server</h3>
