@@ -52,7 +52,7 @@ def show_entries():
     db = get_db()
     cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
     entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
+    return render_template('layout.html', entries=entries)
 
 
 @app.route('/add', methods=['POST'])
@@ -91,4 +91,4 @@ def logout():
 
 if __name__ == '__main__':
     init_db()
-    app.run(host='10.0.0.5', port=5000)
+    app.run(host='localhost', port=5000)
