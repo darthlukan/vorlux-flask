@@ -4,8 +4,6 @@ import sqlite3
 import os
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from werkzeug.security import generate_password_hash
-<<<<<<< HEAD
-=======
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -33,7 +31,6 @@ def get_db():
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = connect_db()
     return g.sqlite_db
->>>>>>> 962efa51c699f54683f051466726cf79e3671a29
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -77,8 +74,6 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-<<<<<<< HEAD
-=======
 @app.teardown_appcontext
 def close_db(error):
     """Closes the database again at the end of the request."""
@@ -93,7 +88,6 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
->>>>>>> 962efa51c699f54683f051466726cf79e3671a29
 def get_user_id(db, username):
     rv = db.execute('''SELECT userid FROM user WHERE username = ?''', [username], one=True)
     if rv:
@@ -171,18 +165,14 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
-<<<<<<< HEAD
 @app.route('/about')
 def about_us():
 	return render_template('aboutus.html')
-=======
->>>>>>> 962efa51c699f54683f051466726cf79e3671a29
 
 @app.route('/help')
 def help_page():
     return render_template("help.html")
 
-<<<<<<< HEAD
 @app.route('/employees')
 def employees():
 	return render_template('employees.html')
@@ -198,8 +188,10 @@ def support():
 @app.route('/donate')
 def donate():
 	return render_template('donate.html')
-=======
->>>>>>> 962efa51c699f54683f051466726cf79e3671a29
+
+@app.route('/contact')
+def contact_us():
+	return render_template('conactus.html')
 
 if __name__ == '__main__':
     init_db()
