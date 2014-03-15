@@ -121,7 +121,7 @@ def register():  # registering new user
         )
         db.commit()
         flash('Thank you for registering! You may now login')
-        return redirect(url_for('login'))
+        return redirect(url_for('/'))
     return render_template('register.html', error=error)
 
 @app.route('/')
@@ -141,7 +141,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('You were logged in')
-            return redirect(url_for('show_entries'))
+            return redirect(url_for('/'))
     return render_template('login.html', error=error)
 
 
@@ -149,7 +149,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('/'))
 
 @app.route('/about')
 def about_us():
