@@ -1,0 +1,62 @@
+body {
+  padding-top: 50px;
+  background:#224E70;
+}
+.starter-template {
+  padding: 40px 15px;
+ /* text-align: center; */
+}
+
+pre {
+        background:#000;
+        color:#CCC;
+        padding: 2mm;
+        border:1px solid #999;
+}
+
+#page {
+        overflow: hidden;
+        margin: 0px 0px;
+        padding: 20px 0px;
+        border-top: 1px solid #CFCFCF;
+        border-bottom: 1px solid #CFCFCF;
+}
+
+th {
+	text-align:center;
+}
+
+#content {
+        float: center;
+        width: 800px;
+}
+
+#footer {
+        overflow: hidden;
+        padding: 20px 0px 10px 0px;
+	border-top: 1px solid #CFCFCF;
+}
+
+#footer p {
+        text-align: center;
+}
+
+#footer a {
+}
+
+#wrapper {
+        width: 1200px;
+        padding: 0px 50px;
+        background: #FFFFFF;
+        height:auto;
+}
+
+.container {
+        width: 1400px;
+        margin: 0px auto;
+}
+
+.clearfix {
+        clear: both;
+}
+
