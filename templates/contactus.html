@@ -1,29 +1,50 @@
-<title>Contact Us</title>
-<center><h1>Contact Us</center></h1>
-<center><strong><h3>Thanks for contacting us! We will get back to you as soon as possible!</h3></strong>
-<center><h1>Contact Us</h1>
-<br />
-<form action="" method="post">
-<table width="400" border="0" cellspacing="3" cellpadding="5" align="center">
-<tr align="center" cellpadding="2">
-<td width="29%" class="bodytext" align="center">Name:</td>
-<td width="71%" cellpadding="1"><input name="name" type="text" id="name" size="32"></td>
-</tr>
-<tr align="center">
-<p><td class="bodytext" align="center">Email:</td>
-<td><input name="email" type="text" id="email" size="32"></td>
-</p></tr>
-<tr align="center">
-<p><td class="bodytext" align="center">Subject:</td>
-<td><input name="subject" type="text" id="subject" size="32"></td>
-</p></tr>
-<tr align="center"><p>
-<td class="bodytext" align="center">Message:</td>
-<td><textarea name="message" cols="55" rows="10" id="message" class="bodytext"></textarea></td>
-</p></tr>
-<tr align="center">
-<p><td class="bodytext"> </td>
-<td align="center" valign="top"><input type="submit" name="Submit"></td>
-</p></tr>
-</table>
+{% extends "base_layout.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block head %}
+        {{ super() }}
+{% endblock %}
 
+{% block content %}
+    <h1>Contact Us</h1>
+        {% if error %}
+            <strong style="color: red">{{ error }}</strong>
+        {% endif %}
+    <strong><h3>Thanks for contacting us! We will get back to you as soon as possible!</h3></strong>
+    <br />
+    <form action="/contact" method="post">
+        <table width="400" border="0" cellspacing="3" cellpadding="5" align="center">
+            <tr align="center" cellpadding="2">
+                <td width="29%" class="bodytext" align="center">Name:</td>
+                <td width="71%" cellpadding="1"><input name="name" type="text" id="name" size="32"></td>
+            </tr>
+            <tr align="center">
+                <p>
+                    <td class="bodytext" align="center">Email:</td>
+                    <td><input name="email" type="text" id="email" size="32"></td>
+                </p>
+            </tr>
+            <tr align="center">
+                <p>
+                    <td class="bodytext" align="center">Subject:</td>
+                    <td>
+                        <input name="subject" type="text" id="subject" size="32">
+                    </td>
+                </p>
+            </tr>
+            <tr align="center">
+                <p>
+                    <td class="bodytext" align="center">Message:</td>
+                    <td>
+                        <textarea name="message" cols="55" rows="10" id="message" class="bodytext"></textarea>
+                    </td>
+                </p>
+            </tr>
+            <tr align="center">
+                <p>
+                    <td class="bodytext"> </td>
+                <td align="center" valign="top"><input type="submit" name="Submit"></td>
+                </p>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

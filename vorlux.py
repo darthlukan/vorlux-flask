@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
-import sqlite3
 import os
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+import sqlite3
+
 from werkzeug.security import generate_password_hash
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+
+from flask_mail import Mail, Message
+from config import ADMINS, MAIL_USERNAME
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -16,6 +20,8 @@ app.config.update(dict(
     PASSWORD='default'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+mail = Mail(app)
 
 
 def connect_db():
@@ -162,14 +168,45 @@ def donate():
     return render_template('donate.html')
 
 
+def send_email(email_data):
+    msg = Message(
+        subject=email_data['subject'],
+        sender=ADMINS[0],
+        recipients=ADMINS
+    )
+    msg.body = """
+    The user: %s with email: %s sent the following message:\n
+    '%s'\n
+
+    Message sent from contact page.\n
+    """ % (email_data['name'], email_data['email'], email_data['user_message'])
+    try:
+        with app.app_context():
+            mail.send(msg)
+        return True
+    except Exception, e:
+        print e.message
+        return False
+
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact_us():
     if request.method == 'POST':
-        pass
+        form = request.form
+        email_data = {
+            'email': form['email'],
+            'name': form['name'],
+            'subject': form['subject'],
+            'user_message': form['message']
+        }
+        if send_email(email_data):
+            return redirect("/")
+        else:
+            return render_template('contactus.html', error="Failed to send email via contact form!")
     else:
         return render_template('contactus.html')
 
 
 if __name__ == '__main__':
     init_db()
-    app.run(host='10.0.0.5', port=5000)
+    app.run(host='localhost', port=5000)
