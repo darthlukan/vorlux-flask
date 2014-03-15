@@ -75,7 +75,7 @@ def close_db(error):
 
 
 def get_user_id(db, username):
-    rv = db.execute('''SELECT userid FROM user WHERE username = ?''', [username], one=True)
+    rv = db.execute("SELECT userid FROM user WHERE username = ?", [username], one=True)
     if rv:
         return rv[0]
     return None
@@ -101,7 +101,7 @@ def register():  # registering new user
         error = 'Chosen username is already taken'
     else:
         db.execute(
-            '''INSERT INTO user (username, email, pw_hash) VALUES (?, ?, ?)''',
+            "INSERT INTO user (username, email, pw_hash) VALUES (?, ?, ?)",
             [request.form['username'], request.form['email'],
              generate_password_hash(request.form['password'])]
         )
