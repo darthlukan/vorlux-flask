@@ -1,0 +1,57 @@
+<title>Help</title>
+<center><h1>Help</h1></center>
+<p><h3>How to connect to your new server</h3></p>
+<h4>On GNU/Linux</h4>
+<p>The best way to connect to your new server is through SSH, you can do so through your terminal emulator with:</p>
+<pre><strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> ssh root@server-ip</pre>
+<h4>On Windows</h4>
+<p>If you're using a Windows box, there are tools out there to connect to your GNU/Linux server. Our recommendation is <a href="http://http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" title="PuTTY Download">PuTTY</a>. There are other tools out there, but this is how you would connect to your new GNU/Linux server using PuTTY.</p>
+<p>After downloading PuTTY, open it and in the the <strong>Host Name (or IP address)</strong> box you type in your user and host and port number (<em>For full size, click on the 
+picture</em>):
+<p><center><a href="/images/putty-1.png" target="_blank" title="PuTTY Host Name"><img src="/images/putty-1.png" alt="PuTTY Host Name" height="320" width="240" /></a></center></p>
+<p>After that, it will prompt for password and you will have access to your server.</p>
+<p><center><a href="/images/geonosis.png" target="_blank" title="Logged in"><img src="/images/geonosis.png" alt="Logged in" height="240" width="320" /></a></center></p>
+<h3>How to generate SSH RSA key for your server</h3>
+<h4>On GNU/Linux</h4>
+<p>This helps for security reasons to have an RSA keypair for your server and computer you use to connect to your server. It's really simple to do:</p>
+<pre><strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> cd ~/.ssh
+<strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~/.ssh $</font></strong> ssh-keygen -t rsa -C "your@email.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/user/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/user/.ssh/id_rsa.
+Your public key has been saved in /home/user/.ssh/id_rsa.pub.
+The key fingerprint is:
+0e:70:07:60:a7:fb:95:48:c7:c6:24:e6:be:e9:f1:d1 your@email.com
+</pre>
+<p>After that you can upload the <code>id_rsa.pub</code> to your server:
+<pre><strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> scp ~/.ssh/id_rsa.pub root@your-ip:~/
+<strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> ssh root@your-ip
+Password:
+<font color="#FF0000"><strong>root@your-ip</font><font color="#0000FF"> ~ #</font></strong> cat id_rsa.pub > ~/.ssh/authorized_keys</pre>
+<p>After that you can log into your server without it asking for a password (<em>unless you added a passphrase on your id_rsa key</em>):</p>
+<pre><strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> ssh root@your-ip
+<strong><font color="#FF0000">root@your-ip</font><font color="#0000FF"> ~ #</font></strong></pre>
+<h4>On Windows</h4>
+<p>To do this on Windows is pretty simple. First you need to open <strong>PuTTYGen</strong>, search for it in your start menu.</p>
+<p><center><a href="/images/puttygen.png" title="PuTTYGen" target="_blank"><img src="/images/puttygen.png" height="320" width="240" /></a></center></p>
+<p>After you have opened PuTTYGen, you will click on <strong>Generate</strong></p>
+<p><center><a href="/images/puttygen-generate.png" title="Generate" target="_blank"><img src="/images/puttygen-generate.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/images/key-final.png" title="Key" target="_blank"><img src="/images/key-final.png" height="320" width="240" /></a></center></p>
+<p>Move your mouse in random patterns to generate the key, and click <strong>Save Public Key</strong> as well as <strong>Save Private Key</strong>. I always save mine as 
+<code>id_rsa.pub</code> for public and <code>id_rsa.ppk</code> for private. After you've done this, you can SSH into your box and copy the <strong>Public key for pasting into OpenSSH 
+authorized_keys file</strong> into your <code>~/.ssh/authorized_keys</code> file.</p>
+<p>After it is uploaded, you can direct PUTTY to use your new key. </p>
+<p><center><a href="/images/putty-load.png" title="Load key"><img src="/images/putty-load.png" height="320" width="240" /></a></center></p>
+<p><center><a href="/images/id_rsa.png" title="Choose key"><img src="/images/id_rsa.png" height="320" width="240" /></a></center></p>
+<p>You can save the connection in PuTTY, otherwise you will need to tell it to use this key each time you run it.</p>
+<p><em>It is recommended that you disable <strong>root login</strong>, and add a user and login with your user. You do not have to do this, but it is recommended.</em></p>
+<h3>Setting up a Minecraft Server</h3>
+<p>This varies from distribution to distribution, but for the most part you need Java to do this. It is recommended to use Oracle's JVM, which on some distributions has a fetch restriction. So for a Gentoo/Funtoo system you have to download the files manually and add them to <code>/usr/portage/distfiles/</code>. For other distributions, they are packaged and you can install them.</p>
+<p>After you've installed Java, you simply download the <code>Minecraft_server.jar</code> from Minecraft's website and you run:
+<pre><strong><font color="#00FF00">user@host</font><font color="#0000FF"> ~ $</font></strong> java -jar Minecraft_server.jar nogui</pre></p>
+<p>Here is a simple BASH script to allow it to run in the background, and redirect the log.</p>
+<pre><font color="#006699">#!/bin/bash</font>
+nohup java -jar -Xmx1024M -Xms1024M minecraft_server*.jar nogui <font color="#00FF00">></font> minecraft.log <font color="#00FF00">&</font></pre>
+<p>If you use less RAM, just replace <code>-Xmx1024M</code> and <code>-Xms1024M</code> with a lower value.</p>
