@@ -47,6 +47,7 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
 def get_user_id(db, username):
     rv = db.execute('''SELECT userid FROM user WHERE username = ?''', [username], one=True)
     if rv:
@@ -74,15 +75,16 @@ def register():  # registering new user
         error = 'Chosen username is already taken'
     else:
         db.execute(
-            '''insert into user (username, email, pw_hash) values (?, ?, ?)''',
+            '''INSERT INTO user (username, email, pw_hash) VALUES (?, ?, ?)''',
             [request.form['username'], request.form['email'],
-            generate_password_hash(request.form['password'])]
+             generate_password_hash(request.form['password'])]
         )
         db.commit()
         flash('Thank you for registering! You may now login')
         return redirect(url_for('login'))
     return render_template('register.html', error=error)
 
+
 def get_user_id(db, username):
     rv = db.execute('''SELECT userid FROM user WHERE username = ?''', [username], one=True)
     if rv:
@@ -110,9 +112,9 @@ def register():  # registering new user
         error = 'Chosen username is already taken'
     else:
         db.execute(
-            '''insert into user (username, email, pw_hash) values (?, ?, ?)''',
+            '''INSERT INTO user (username, email, pw_hash) VALUES (?, ?, ?)''',
             [request.form['username'], request.form['email'],
-            generate_password_hash(request.form['password'])]
+             generate_password_hash(request.form['password'])]
         )
         db.commit()
         flash('Thank you for registering! You may now login')
