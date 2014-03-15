@@ -4,10 +4,10 @@ import os
 import sqlite3
 
 from werkzeug.security import generate_password_hash
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, session, g, redirect, url_for, render_template, flash
 
 from flask_mail import Mail, Message
-from config import ADMINS, MAIL_USERNAME
+from config import ADMINS
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -200,13 +200,12 @@ def contact_us():
             'user_message': form['message']
         }
         if send_email(email_data):
-			flash('Message sent! We will get back to you ASAP!')
+            flash('Message sent! We will get back to you ASAP!')
             return redirect("/")
         else:
             return render_template('contactus.html', error="Failed to send email via contact form!")
     else:
         return render_template('contactus.html')
-
 
 if __name__ == '__main__':
     init_db()
