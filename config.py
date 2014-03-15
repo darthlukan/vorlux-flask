@@ -13,4 +13,4 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = secrets.get("Mail", "USERNAME")
 MAIL_PASSWORD = secrets.get("Mail", "PASSWORD")
 
-ADMINS = ['your-gmail-username@gmail.com']
+ADMINS = ['support@vorluxhosting.com', 'anakin@vorluxhosting.com']
