@@ -126,7 +126,7 @@ def register():  # registering new user
 
 @app.route('/')
 def home():
-    return render_template('base_layout.html')
+    return render_template('home.html')
 
 
 
