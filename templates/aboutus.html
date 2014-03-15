@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<title>About Us</title>
+{% extends "base_layout.html" %}
+{% block head %}
+        {{ super() }}
+        {% block title %}Vorlux Hosting{% endblock %}
+{% endblock %}
+{% block content %}
 <center><h1>About Us</center></h1>
 <h3><strong>Who runs this company?</strong></h3>
 <p></p><p>Currently there are four people working on Vorlux Hosting. You can read more <a href="index.php?page=employees" title="About Our Staff">about our staff here</a>. Scott is the founder of this company, as well as a <a href="http://funtoo.org" alt="Funtoo Linux">Funtoo Linux</a> developer. Nathan is Head of Web Content, Troy is Head of Hardware, and Stephanie is Head of Social Media.</p>
@@ -22,5 +27,5 @@ do know what they're doing. If you're a veteran server admin, or someone interes
 <p></p><p>Like us on <a href="https://facebook.com/vorluxhosting" title="Vorlux Hosting on Facebook" target="_blank">Facebook</a>!
 <br />Follow us on <a href="https://twitter.com/vorluxhosting" title="Vorlux Hosting on Twitter" target="_blank">Twitter</a>!
 <br />RSS for our <a href="http://blog.vorluxhosting.com" title="Vorlux Hosting Blog" target="_blank">blog</a>!</p>
-
+{% endblock %}
 

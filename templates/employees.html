@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<title>Employees</title>
+{% extends "base_layout.html" %}
+{% block head %}
+        {{ super() }}
+        {% block title %}About Our Staff{% endblock %}
+{% endblock %}
+{% block content %}
 <center><h1>The Employees Behind Vorlux Hosting</h1></center>
 <p>Here is where you'll find who is behind this company and what their roles are.</p>
 <p><table>
@@ -22,3 +27,4 @@
 </tr>
 </table>
 </p>
+{% endblock %}

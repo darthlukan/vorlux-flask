@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<title>Vorlux Hosting</title>
+{% extends "base_layout.html" %}
+{% block head %}
+        {{ super() }}
+        {% block title %}Vorlux Hosting{% endblock %}
+{% endblock %}
+{% block content %}
 <center><h1>What is Vorlux Hosting</center></h1>
 <center><img src="/images/logo.jpg" alt="Vorlux Hosting" /></center>
 <p>Vorlux Hosting is a hosting company based out of the San Fransisco Bay area in Northern California. We offer a range of Virtual Private Servers (<a href="http://en.wikipedia.org/wiki/Virtual_private_server" target="_blank" title="VPS Wikipedia">VPS</a>) and <a href="http://openvz.org" target="_blank" title="OpenVZ Containers">OpenVZ Containers</a> to bring the best hosting we can to our customers. You can learn more <a href="index.php?page=about" title="About Us">About Us</a>, and learn about the different <a href="index.php?page=plans" title="Plans">plans</a> we offer.</p>
@@ -8,3 +13,4 @@
 <blockquote><em>A company that physically houses your web pages and makes them available on the World Wide Web. These firms typically charge a monthly or annual fee for their services.</em></blockquote></p>
 <p>That is a very broad definition. At Vorlux Hosting we believe that having your own space on your very own server to host <a href="http://minecraft.net" target="_blank" title="Minecraft">Minecraft</a>, or your very own website for what you need, to host your apps your working on, to run a git server, or to just learn how to maintain a server. With a server running 24/7 you will have access whenever you need it, and if you're away you can still have your apps readily available whenever you want. We believe in reliable, easy, affordable hosting for every one! So head on over to <a href="index.php?page=contact" title="Contact Us">contact us</a> to sign up for your server today!</p>
 
+{% endblock %}
