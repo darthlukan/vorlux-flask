@@ -124,11 +124,29 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+@app.route('/about')
+def about_us():
+	return render_template('aboutus.html')
 
 @app.route('/help')
 def help_page():
     return render_template("help.html")
 
+@app.route('/employees')
+def employees():
+	return render_template('employees.html')
+
+@app.route('/plans')
+def plans():
+	return render_template('plans.html')
+
+@app.route('/support')
+def support():
+	return render_template('support.html')
+
+@app.route('/donate')
+def donate():
+	return render_template('donate.html')
 
 if __name__ == '__main__':
     init_db()
