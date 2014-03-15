@@ -16,11 +16,13 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
+
 
 def get_db():
     """Opens a new database connection if there is none yet for the current application context.
@@ -29,36 +31,41 @@ def get_db():
         g.sqlite_db = connect_db()
     return g.sqlite_db
 
+
 @app.teardown_appcontext
 def close_db(error):
     """Closes the database again at the end of the request."""
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+
 def init_db():
     with app.app_context():
-	db = get_db()
-	with app.open_resource('schema.sql', mode='r') as f:
-	    db.cursor().executescript(f.read())
-	db.commit()
+        db = get_db()
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+
 
 @app.route('/')
 def show_entries():
     db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
+    cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
     entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
+    return render_template('layout.html', entries=entries)
+
 
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
-    db.execute('insert into entries (title, text) values (?, ?)',
-	         [request.form['title'], request.form['text']])
+    db.execute('INSERT INTO entries (title, text) VALUES (?, ?)',
+               [request.form['title'], request.form['text']])
     db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -74,12 +81,14 @@ def login():
             return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
 
+
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+
 if __name__ == '__main__':
-	init_db()
-	app.run(host='10.0.0.5', port=5000)
+    init_db()
+    app.run(host='localhost', port=5000)
